@@ -86,7 +86,7 @@ code 					- Required | String
 
 (GET) <a href="http://localhost:3333/product" target="_blank">/product</a>
 return array of products
-### List a book by code
+### List a product by code
 
 (GET) <a href="http://localhost:3333/product/:code" target="_blank">/product/:code</a>
 return one product
