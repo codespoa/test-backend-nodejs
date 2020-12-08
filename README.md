@@ -1,40 +1,107 @@
-<h1>Backend Analyst Candidate Testing</h1>
+# List The Products
 
-Hello dear developer, in this test we will analyze your general knowledge and even speed of development. Below we will explain everything that will be needed.
-Do not be alarmed, we do not expect everyone to be able to complete all tasks, this test is the same presented for candidates of all experience levels, so do what you can without worry.
 
-<strong>The challenge</strong>
+### Tech
 
-Your challenge is to develop an API, using Node.JS, for a product catalog management application. Thus, you must analyze and convert the user stories below into routes of an application.
- 
-<strong>User stories:</strong>
+- [Node.js]
+- [MongoDB]
+- [Docker]
+- [Express]
+- [Jest]
+- [Husky]
+- [Commit-Lint]
 
-- As a user I would like to register a product so that I can have access to the data of this product in the future (Title, description, price, category)
-- I as a user would like to be able to associate and edit a product category;
-- As a user I would like to be able to access the list of all products;
-- As a user I would like to be able to filter products by name or category;
-- I as a user would like to be able to update the product data;
-- I as a user would like to be able to delete a product from my catalog;
- 
-<strong>Instructions</strong>
-- <strong>To start the test, <strong>fork</strong> this repository, create a branch with its full name and then and send us the link to the test performed (link to your repository) . If you just clone the repository you will not be able to push and then it will be more complicated to make the pull request.</strong>
-- The choice of libraries, databases, architecture, etc. is at your discretion.
-- Change the README file explaining what it takes to run your application.
-- Paste the branch name into the GUPY system and indicate the completion of the test
-- If you want you can leave us feedback regarding the test
+### Installation
 
- 
-<strong>Our analysis</strong>
-- Knowledge of Javascript, NodeJs, Express will be assessed for this position;
-- We'll look at how you structure the:
-  application layers;
-  outgoing calls,
-  environment variables,
-   cache,
-  unit tests,
-  logs;
-  error handling;
-  documentation.
-- Code organization, module separation, readability and comments.
-- Commit history.
-- The use of MongoDB is a differentiator
+Install all dependencies
+
+```sh
+$ cd test-backend-nodejs
+$ yarn || npm install
+```
+
+Start the application container
+
+
+```sh
+$ docker-compose up -d --build
+```
+
+don't forget to complete the environment variables in the .env file, have an .env.example file, uncomment and fill in the variables
+
+with your container running, now go to <a href="http://localhost:3333" target="_blank">http://localhost:3333</a>
+
+
+# Documentation
+
+## Routes
+### Create User
+
+(POST) <a href="http://localhost:3333/user" target="_blank">/user</a>
+###### Data in body
+
+name - Required | String
+email - Required | String
+password - Required | String
+
+{
+"name": "jubileu",
+"email": "jubileu@teste.com",
+"password": "123456"
+}
+
+### Login User
+
+(POST) <a href="http://localhost:3333/session" target="_blank">/session</a>
+
+###### Data in body
+
+name - Required | String
+password - Required | String
+
+{
+"email": "jubileu@teste.com",
+"password": "123456"
+}
+return user and user token
+### Create Product
+
+(POST) <a href="http://localhost:3333/product" target="_blank">/product</a>
+###### Data in body
+title    			- Required | String
+description  	- Required | String
+price   			- Required | Number
+category			- Required | String
+status 				-  String (default: active) - (options: active, inactive, lacking)
+code 					- Required | String
+
+{
+	"title": "Goku",
+	"description": "E mais de 8000 mil",
+	"price": 10000,
+	"category": "O melhor",
+	"code": "casaKame"
+}
+### List all Product
+
+(GET) <a href="http://localhost:3333/product" target="_blank">/product</a>
+return array of products
+### List a book by code
+
+(GET) <a href="http://localhost:3333/product/:code" target="_blank">/product/:code</a>
+return one product
+### List Products by search
+
+(GET) <a href="http://localhost:3333/product/search" target="_blank">/product/search</a>
+###### Data in query params
+
+title 		| String
+category 	| String
+code 		 	| String
+
+return array of products
+
+### Delete Product
+
+(DELETE) <a href="http://localhost:3333/product/:code" target="_blank">/product/:code</a>
+
